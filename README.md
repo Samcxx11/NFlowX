@@ -47,38 +47,52 @@ An interactive implementation of the Edmonds-Karp max-flow algorithm with dual v
 ### Linux (Debian/Ubuntu)
 ```bash
 sudo apt update && sudo apt install g++ libsfml-dev graphviz cmake
-macOS (Homebrew)
-bash
-brew install sfml graphviz cmake
-Windows (vcpkg)
-powershell
-vcpkg install sfml graphviz --triplet x64-windows
-Building the Project
-Method 1: Direct Compilation
-Static Diagram Generation:
+```
 
-bash
+### macOS (Homebrew)
+```bash
+brew install sfml graphviz cmake
+```
+
+### Windows (vcpkg)
+```powershell
+vcpkg install sfml graphviz --triplet x64-windows
+```
+
+## Building the Project
+
+### Method 1: Direct Compilation
+
+**Static Diagram Generation:**
+```bash
 g++ src/main.cpp src/graph.cpp -o nflox
 ./nflox
 dot -Tpng graph.dot -o graph.png
-Interactive Visualizer:
+```
 
-bash
+**Interactive Visualizer:**
+```bash
 g++ src/main.cpp src/graph.cpp src/visualizer.cpp -o nflowx -lsfml-graphics -lsfml-window -lsfml-system
 ./nflowx
-Method 2: CMake Build (Recommended)
-bash
+```
+
+### Method 2: CMake Build (Recommended)
+```bash
 mkdir build && cd build
 cmake .. -DCMAKE_BUILD_TYPE=Release
 make -j4
-Run Executables:
+```
 
-bash
+**Run Executables:**
+```bash
 ./nflowx  # Interactive visualizer
 ./nflox   # Static diagram generator
-Usage
-Input Specification:
+```
 
+## Usage
+
+**Input Specification:**
+```
 Enter number of nodes: 4
 Enter number of edges: 5
 Enter each edge as: from to capacity
@@ -89,43 +103,41 @@ Enter each edge as: from to capacity
 2 3 20
 Enter source: 0
 Enter sink: 3
-Interactive Controls:
+```
 
-→ Right Arrow: Next augmentation step
+### Interactive Controls:
 
-← Left Arrow: Previous step
-
-Space: Toggle final max-flow view
-
+→ Right Arrow: Next augmentation step  
+← Left Arrow: Previous step  
+Space: Toggle final max-flow view  
 Esc: Exit visualization
 
-Output Files:
+### Output Files:
 
-graph.dot: Graphviz source file
+- `graph.dot`: Graphviz source file
+- `graph.png`: Rendered flow network diagram
 
-graph.png: Rendered flow network diagram
+## Project Structure
 
-Project Structure
+```
 src/
 ├── main.cpp            # CLI interface and core workflow
 ├── graph.h             # Graph class declaration
 ├── graph.cpp           # Edmonds-Karp implementation
 ├── visualizer.h        # SFML visualization interface
 └── visualizer.cpp      # Rendering and interaction logic
-Technical Details
-Algorithm:
+```
 
-Implements Edmonds-Karp (BFS-based Ford-Fulkerson)
+## Technical Details
 
-O(VE²) time complexity
+**Algorithm:**
 
-Maintains complete residual graph state
+- Implements Edmonds-Karp (BFS-based Ford-Fulkerson)
+- O(VE²) time complexity
+- Maintains complete residual graph state
 
-Visualization:
+**Visualization:**
 
-SFML 2.5 for hardware-accelerated rendering
-
-Graphviz for automatic graph layout
-
-Circular node positioning algorithm
-
+- SFML 2.5 for hardware-accelerated rendering
+- Graphviz for automatic graph layout
+- Circular node positioning algorithm

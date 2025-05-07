@@ -1,0 +1,13 @@
+
+g++ src/main.cpp src/graph.cpp -o nflox
+./nflox
+ls | grep graph.dot
+dot -Tpng graph.dot -o graph.png
+xdg-open graph.png  # On Linux
+
+
+g++ src/main.cpp src/graph.cpp src/visualizer.cpp -o nflowx -lsfml-graphics -lsfml-window -lsfml-system
+
+
+
+g++ src/main.cpp src/graph.cpp src/visualizer.cpp -o nflowx -lsfml-graphics -lsfml-window -lsfml-system
